@@ -6,6 +6,7 @@ TagManager:
   tags:
   - bomb
   - AI
+  - tile
   layers:
   - Default
   - TransparentFX
