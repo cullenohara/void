@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour {
 			}
 		}
 
-		player.transform.position = Vector3.Lerp(player.transform.position, new Vector3(clickPos.x, player.transform.position.y, clickPos.z), Time.deltaTime * 3);
+		player.transform.position = Vector3.MoveTowards(player.transform.position, new Vector3(clickPos.x, player.transform.position.y, clickPos.z), Time.deltaTime * 3);
 		CheckTiles();
 	}
 
