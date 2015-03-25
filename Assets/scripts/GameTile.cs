@@ -8,6 +8,7 @@ public class GameTile : MonoBehaviour {
 	public GameObject bombPrefab;
 	public GameObject player;
 	public bool inUse = false;
+	public bool canUse = false;
 
 	public Renderer rend;
 	public Color tileColor;
@@ -22,9 +23,13 @@ public class GameTile : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col)
 	{
-		if(col.gameObject.tag == "Player" || col.gameObject.tag == "bomb")
+		if(col.gameObject.tag == "Player")
 		{
-			//print ("Colliding");
+			inUse = true;
+			GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().BroadcastMessage("GetPosition", transform.position);
+		}
+		else if(col.gameObject.tag == "bomb")
+		{
 			inUse = true;
 		}
 	}
@@ -39,7 +44,7 @@ public class GameTile : MonoBehaviour {
 
 	void OnMouseEnter ()
 	{
-		if(inUse == true)
+		if(inUse == true || canUse == false)
 		{
 			rend.material.color = Color.red;
 		}

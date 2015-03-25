@@ -121,6 +121,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 0}
   player: {fileID: 0}
   inUse: 0
+  canUse: 0
   rend: {fileID: 0}
   tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &125774694
@@ -212,6 +213,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 0}
   player: {fileID: 0}
   inUse: 0
+  canUse: 0
   rend: {fileID: 0}
   tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &267422577
@@ -303,6 +305,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 0}
   player: {fileID: 0}
   inUse: 0
+  canUse: 0
   rend: {fileID: 0}
   tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &434970457
@@ -551,6 +554,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 0}
   player: {fileID: 0}
   inUse: 0
+  canUse: 0
   rend: {fileID: 0}
   tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &659213383
@@ -642,6 +646,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 0}
   player: {fileID: 0}
   inUse: 0
+  canUse: 0
   rend: {fileID: 0}
   tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &699404154
@@ -710,7 +715,7 @@ GameObject:
   - 114: {fileID: 740265099}
   m_Layer: 0
   m_Name: _GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -726,9 +731,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a66a7d92d5f495898ac2d914498112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiles: []
   player: {fileID: 0}
   ai: {fileID: 0}
   bomb: {fileID: 0}
+  player_x: 0
+  player_z: 0
   clickPos: {x: 0, y: 0, z: 0}
 --- !u!4 &740265100
 Transform:
@@ -776,6 +784,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 0}
   player: {fileID: 0}
   inUse: 0
+  canUse: 0
   rend: {fileID: 0}
   tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &753569842
@@ -867,6 +876,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 0}
   player: {fileID: 0}
   inUse: 0
+  canUse: 0
   rend: {fileID: 0}
   tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &754903832
@@ -958,6 +968,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 0}
   player: {fileID: 0}
   inUse: 0
+  canUse: 0
   rend: {fileID: 0}
   tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &796027537
@@ -1084,7 +1095,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1276821516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0399999991, y: 2.06999993, z: 0}
+  m_LocalPosition: {x: 0, y: 4.53800011, z: 0}
   m_LocalScale: {x: .75, y: .75, z: .75}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1255,6 +1266,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 0}
   player: {fileID: 0}
   inUse: 0
+  canUse: 0
   rend: {fileID: 0}
   tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &1841157320
