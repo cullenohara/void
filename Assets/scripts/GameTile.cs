@@ -4,19 +4,15 @@ using System.Collections.Generic;
 
 public class GameTile : MonoBehaviour {
 
-	public int tileId;
-	public GameObject bombPrefab;
-	public GameObject player;
 	public bool inUse = false;
 	public bool canUse = false;
+	public Vector3 tileId;
 
 	public Renderer rend;
 	public Color tileColor;
 
 	void Start ()
 	{
-		bombPrefab = GameObject.FindGameObjectWithTag( "bomb" );
-		player = GameObject.FindGameObjectWithTag( "Player" );
 		rend = GetComponent<Renderer>();
 		tileColor = rend.material.color;
 	}
@@ -26,7 +22,7 @@ public class GameTile : MonoBehaviour {
 		if(col.gameObject.tag == "Player")
 		{
 			inUse = true;
-			GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().BroadcastMessage("GetPosition", transform.position);
+			print (transform.position);
 		}
 		else if(col.gameObject.tag == "bomb")
 		{
