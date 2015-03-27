@@ -22,7 +22,6 @@ public class GameTile : MonoBehaviour {
 		if(col.gameObject.tag == "Player")
 		{
 			inUse = true;
-			print (transform.position);
 		}
 		else if(col.gameObject.tag == "bomb")
 		{

@@ -839,6 +839,7 @@ MonoBehaviour:
   right: {x: 0, y: 0, z: 0}
   up: {x: 0, y: 0, z: 0}
   down: {x: 0, y: 0, z: 0}
+  facingDirection: right
 --- !u!212 &541138654
 SpriteRenderer:
   m_ObjectHideFlags: 0

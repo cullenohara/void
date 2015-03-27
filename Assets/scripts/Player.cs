@@ -14,7 +14,9 @@ public class Player : MonoBehaviour {
 	public Vector3 right;
 	public Vector3 up;
 	public Vector3 down;
-	
+
+	public string facingDirection = "right";
+
 	void Start ()
 	{
 		foreach(GameObject go in GameObject.FindGameObjectsWithTag("tile"))
@@ -38,12 +40,22 @@ public class Player : MonoBehaviour {
 					{
 						clickPos = hit.transform.position;
 						canMove = false;
+						if(clickPos == left && facingDirection == "right")
+						{
+							transform.localScale -= new Vector3(2,0,0);
+							facingDirection = "left";
+						}
+						if(clickPos == right && facingDirection == "left")
+						{
+							transform.localScale += new Vector3(2,0,0);
+							facingDirection = "right";
+						}
 					}
 				}
 			}
 		//}
 
-		transform.position = Vector3.MoveTowards(transform.position, new Vector3(clickPos.x, transform.position.y, clickPos.z + 0.3f), Time.deltaTime * 3);
+		transform.position = Vector3.MoveTowards(transform.position, new Vector3(clickPos.x, transform.position.y, clickPos.z + 0.3f), Time.deltaTime * 2);
 		CheckTiles();
 
 		left = new Vector3(transform.position.x - 1, transform.position.y - 0.1f, transform.position.z - 0.3f);
