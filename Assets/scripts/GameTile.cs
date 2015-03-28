@@ -11,10 +11,13 @@ public class GameTile : MonoBehaviour {
 	public Renderer rend;
 	public Color tileColor;
 
+	private GameObject player;
+
 	void Start ()
 	{
 		rend = GetComponent<Renderer>();
 		tileColor = rend.material.color;
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	void OnCollisionEnter (Collision col)
@@ -39,13 +42,28 @@ public class GameTile : MonoBehaviour {
 
 	void OnMouseEnter ()
 	{
-		if(inUse == true || canUse == false)
+		if(player.GetComponent<Player>().canAttack == true)
 		{
-			rend.material.color = Color.red;
+			if(inUse == true)
+			{
+				rend.material.color = Color.red;
+			}
+			else
+			{
+				rend.material.color = Color.cyan;
+			}
 		}
-		else
+
+		if(player.GetComponent<Player>().canMove == true)
 		{
-			rend.material.color = Color.green;
+			if(inUse == true || canUse == false)
+			{
+				rend.material.color = Color.red;
+			}
+			else
+			{
+				rend.material.color = Color.green;
+			}
 		}
 	}
 
