@@ -11,8 +11,9 @@ public class Weapons {
 	public string desc;
 	public Sprite icon;
 	public Sprite image;
+	public Vector3 parent;
 
-	public Weapons (int _count, int _power, string _name, string _desc, Sprite _icon, Sprite _image)
+	public Weapons (int _count, int _power, string _name, string _desc, Sprite _icon, Sprite _image, Vector3 _parent)
 	{
 		count = _count;
 		power = _power;
@@ -20,6 +21,7 @@ public class Weapons {
 		desc = _desc;
 		icon = _icon;
 		image = _image;
+		parent = _parent;
 	}
 
 }

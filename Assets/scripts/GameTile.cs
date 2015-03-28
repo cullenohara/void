@@ -22,11 +22,7 @@ public class GameTile : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col)
 	{
-		if(col.gameObject.tag == "Player")
-		{
-			inUse = true;
-		}
-		else if(col.gameObject.tag == "bomb")
+		if(col.gameObject.tag == "Player" || col.gameObject.tag == "bomb")
 		{
 			inUse = true;
 		}

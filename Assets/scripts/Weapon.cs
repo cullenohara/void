@@ -12,6 +12,15 @@ public class Weapon : MonoBehaviour {
 	public int WeaponPower;
 	public int TurnCount;
 	public Sprite WeaponSprite;
+	public Vector3 ParentTile;
+
+	private Player playerScript;
+
+	void Start ()
+	{
+		playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		print (playerScript.tiles[0].GetComponent<GameTile>().tileId);
+	}
 
 	void SetWeaponType (int id)
 	{
@@ -32,7 +41,14 @@ public class Weapon : MonoBehaviour {
 		if(TurnCount == 0)
 		{
 			Destroy(gameObject);
-			print ("Bye Bye");
+			foreach (GameObject tile in playerScript.tiles)
+			{
+				print ("test");
+				if(tile.GetComponent<GameTile>().tileId == ParentTile)
+				{
+					tile.GetComponent<GameTile>().inUse = false;
+				}
+			}
 		}
 		countText.text = TurnCount.ToString();
 	}
