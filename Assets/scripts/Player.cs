@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 
 	public bool canMove = true;
 	public bool canAttack = false;
+	public bool onCooldown = false;
 
 	public Vector3 left;
 	public Vector3 right;
@@ -16,6 +17,11 @@ public class Player : MonoBehaviour {
 	public Vector3 down;
 
 	public string facingDirection = "right";
+
+	public Transform temp;
+	public Transform useItem;
+
+	private GameObject[] allWeapons;
 
 	void Start ()
 	{
@@ -28,32 +34,14 @@ public class Player : MonoBehaviour {
 	
 	void Update ()
 	{
-		//if(canMove == true)
-		//{
-			if (Input.GetMouseButtonDown(0)) 
-			{
-				RaycastHit hit;
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				if (Physics.Raycast(ray, out hit))
-				{
-					if (hit.collider.tag == "tile" && hit.transform.gameObject.GetComponent<GameTile>().inUse == false && hit.transform.gameObject.GetComponent<GameTile>().canUse == true)
-					{
-						clickPos = hit.transform.position;
-						canMove = false;
-						if(clickPos == left && facingDirection == "right")
-						{
-							transform.localScale -= new Vector3(2,0,0);
-							facingDirection = "left";
-						}
-						if(clickPos == right && facingDirection == "left")
-						{
-							transform.localScale += new Vector3(2,0,0);
-							facingDirection = "right";
-						}
-					}
-				}
-			}
-		//}
+		if(canMove == true)
+		{
+			Move ();
+		}
+		if(canAttack == true)
+		{
+			Attack ();
+		}
 
 		transform.position = Vector3.MoveTowards(transform.position, new Vector3(clickPos.x, transform.position.y, clickPos.z + 0.3f), Time.deltaTime * 2);
 		CheckTiles();
@@ -87,11 +75,71 @@ public class Player : MonoBehaviour {
 
 	void Move ()
 	{
-
+		if (Input.GetMouseButtonDown(0)) 
+		{
+			RaycastHit hit;
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(ray, out hit))
+			{
+				if (hit.collider.tag == "tile" && hit.transform.gameObject.GetComponent<GameTile>().inUse == false 
+				    && hit.transform.gameObject.GetComponent<GameTile>().canUse == true && onCooldown == false)
+				{
+					clickPos = hit.transform.position;					
+					onCooldown = true;
+					StartCoroutine("Cooldown");
+					canMove = false;
+					canAttack = true;
+					if(clickPos == left && facingDirection == "right")
+					{
+						transform.localScale -= new Vector3(2,0,0);
+						facingDirection = "left";
+					}
+					if(clickPos == right && facingDirection == "left")
+					{
+						transform.localScale += new Vector3(2,0,0);
+						facingDirection = "right";
+					}
+				}
+			}
+		}
 	}
 
 	void Attack ()
 	{
-
+		if (Input.GetMouseButtonDown(0)) 
+		{
+			RaycastHit hit;
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(ray, out hit))
+			{
+				if (hit.collider.tag == "tile" && hit.transform.gameObject.GetComponent<GameTile>().inUse == false && onCooldown == false)
+				{
+					onCooldown = true;
+					StartCoroutine("Cooldown");
+					canMove = true;
+					canAttack = false;
+					EndTurn();
+					temp = Instantiate(useItem, hit.collider.transform.position, hit.collider.transform.rotation) as Transform;
+					temp.SendMessage("SetWeaponType", 0, SendMessageOptions.RequireReceiver);
+				}
+			}
+		}
 	}
-}
+
+	IEnumerator Cooldown ()
+	{
+		yield return new WaitForSeconds(2);
+		onCooldown = false;
+	}
+
+	void EndTurn ()
+	{
+		allWeapons = GameObject.FindGameObjectsWithTag("bomb");
+		foreach (GameObject weapon in allWeapons)
+		{
+			weapon.BroadcastMessage("SetCount");
+		}
+	}
+
+
+}//EOF
