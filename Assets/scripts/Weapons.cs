@@ -12,8 +12,9 @@ public class Weapons {
 	public Sprite icon;
 	public Sprite image;
 	public Vector3 parent;
+	public WeaponType type;
 
-	public Weapons (int _count, int _power, string _name, string _desc, Sprite _icon, Sprite _image, Vector3 _parent)
+	public Weapons (int _count, int _power, string _name, string _desc, Sprite _icon, Sprite _image, WeaponType _type, Vector3 _parent)
 	{
 		count = _count;
 		power = _power;
@@ -21,7 +22,15 @@ public class Weapons {
 		desc = _desc;
 		icon = _icon;
 		image = _image;
+		type = _type;
 		parent = _parent;
+	}
+
+	public enum WeaponType
+	{
+		ice,
+		fire,
+		poison
 	}
 
 }

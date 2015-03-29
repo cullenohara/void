@@ -119,7 +119,7 @@ public class Player : MonoBehaviour {
 					canMove = true;
 					canAttack = false;
 					EndTurn();
-					temp = Instantiate(useItem, new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 0.1f, hit.collider.transform.position.z), hit.collider.transform.rotation) as Transform;
+					temp = Instantiate(useItem, new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 0.1f, hit.collider.transform.position.z), Quaternion.Euler(90, 0, 0)) as Transform;
 					temp.SendMessage("SetWeaponType", 0, SendMessageOptions.RequireReceiver);
 					temp.GetComponent<Weapon>().ParentTile = hit.collider.transform.position;
 				}
