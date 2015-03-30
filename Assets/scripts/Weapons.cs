@@ -9,12 +9,12 @@ public class Weapons {
 	public int power;
 	public string weapname;
 	public string desc;
-	public Sprite icon;
+	public Texture icon;
 	public Sprite image;
 	public Vector3 parent;
 	public WeaponType type;
 
-	public Weapons (int _count, int _power, string _name, string _desc, Sprite _icon, Sprite _image, WeaponType _type, Vector3 _parent)
+	public Weapons (int _count, int _power, string _name, string _desc, Texture _icon, Sprite _image, WeaponType _type, Vector3 _parent)
 	{
 		count = _count;
 		power = _power;

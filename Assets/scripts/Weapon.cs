@@ -13,9 +13,10 @@ public class Weapon : MonoBehaviour {
 	public int TurnCount;
 	public Sprite WeaponSprite;
 	public Vector3 ParentTile;
+	public Texture WeaponIcon;
 	public Weapons.WeaponType WeapType;
 	
-	private Sprite setSprite;
+	public Sprite setSprite;
 	private Player playerScript;
 
 	void Start ()
@@ -31,6 +32,7 @@ public class Weapon : MonoBehaviour {
 		WeaponDesc = getWeapons.GetComponent<WeaponList>().weaponList[id].desc;
 		WeaponPower = getWeapons.GetComponent<WeaponList>().weaponList[id].power;
 		TurnCount = getWeapons.GetComponent<WeaponList>().weaponList[id].count;
+		WeaponIcon = getWeapons.GetComponent<WeaponList>().weaponList[id].icon;
 		WeaponSprite = getWeapons.GetComponent<WeaponList>().weaponList[id].image;
 		WeapType = getWeapons.GetComponent<WeaponList>().weaponList[id].type;
 		//set the turn count on this weapon
